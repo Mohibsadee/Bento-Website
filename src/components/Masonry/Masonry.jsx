@@ -23,7 +23,7 @@ import Card from "../Card/Card";
     ];
   
     return (
-      <div className="grid mt-2 grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="grid mt-2 grid-cols-1 md:grid-cols-2 gap-4">
         {chunkedCards.map((group, index) => (
           <div key={index} className="grid gap-4">
             {group.map((card, idx) => (
