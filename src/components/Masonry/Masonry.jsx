@@ -1,44 +1,40 @@
-import Card from "../Card/Card";
-  const Masonry = () => {
-    const cards = [
-      { title: "Card 1", description: "Description 1", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" },
-      { title: "Card 2", description: "Description 2", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" },
-      { title: "Card 3", description: "Description 3", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" },
-      { title: "Card 4", description: "Description 4", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" },
-      { title: "Card 5", description: "Description 5", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" },
-      { title: "Card 6", description: "Description 6", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" },
-      { title: "Card 7", description: "Description 7", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" },
-      { title: "Card 8", description: "Description 8", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" },
-      { title: "Card 9", description: "Description 9", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" },
-      { title: "Card 10", description: "Description 10", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" },
-      { title: "Card 11", description: "Description 11", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" },
-      { title: "Card 12", description: "Description 12", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" }
-    ];
-  
-    const chunkedCards = [
-      cards.slice(0, 3),
-      cards.slice(3, 6),
-      cards.slice(6, 9),
-      cards.slice(9, 12)
-    ];
-  
-    return (
-      <div className="grid mt-2 grid-cols-1 md:grid-cols-2 gap-4">
-        {chunkedCards.map((group, index) => (
-          <div key={index} className="grid gap-4">
-            {group.map((card, idx) => (
-              <Card
-                key={idx}
-                title={card.title}
-                description={card.description}
-                image={card.image}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  };
-  
-  export default Masonry;
-  
+import Card1 from "../Card/Card1";
+import Card2 from "../Card/Card2";
+import Card3 from "../Card/Card3";
+import Card4 from "../Card/Card4";
+import Card5 from "../Card/Card5";
+import Card6 from "../Card/Card6";
+
+
+const Masonry = () => {
+
+
+  const cards = [
+    { Component: Card1, props: { title: "Card 1", description: "Description 1", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" } },
+    { Component: Card2, props: { title: "Card 2", description: "Description 2", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" } },
+    { Component: Card3, props: { title: "Card 3", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime illum voluptate natus accusantium ipsum error alias, commodi nulla labore sequi, amet aliquam sed similique so" } },
+    { Component: Card4, props: { title: "Card 4", description: "Description 4", image: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" } },
+    { Component: Card5, props: { title: "Card 5", description: "Description 5" } },
+    { Component: Card6, props: { title: "Card 6", description: "Description 6", highlight: true } },
+  ];
+
+  // Divide cards into two chunks for two-column layout
+  const chunkedCards = [
+    cards.slice(0, 3), // First column: Cards 1, 2, 3
+    cards.slice(3, 6), // Second column: Cards 4, 5, 6
+  ];
+
+  return (
+    <div className="grid mt-2 grid-cols-1 md:grid-cols-2 gap-4">
+      {chunkedCards.map((group, index) => (
+        <div key={index} className="grid gap-4">
+          {group.map(({ Component, props }, idx) => (
+            <Component key={idx} {...props} />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Masonry;
